@@ -1,0 +1,60 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+	<br>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Informacion de contacto</h5>
+			<hr>
+			<p>Email: {{customer.email}}</p>
+			<p>Telefono: {{customer.phone}}</p>
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total de ordenes</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{order_count}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Producto</th>
+					<th>Categoria</th>
+					<th>Fecha de orden</th>
+					<th>Estado</th>
+					<th>Modificar</th>
+					<th>Eliminar</th>
+				</tr>
+
+				{% for order in orders %}
+
+				<tr>
+					<td>{{order.product}}</td>
+					<td>{{order.product.category}}</td>
+					<td>{{order.date_created}}</td>
+					<td>{{order.status}}</td>
+					<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
+
+					<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
